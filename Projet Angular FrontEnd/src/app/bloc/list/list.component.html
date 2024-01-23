@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<body>
+    <app-header></app-header>
+    <app-menu></app-menu>
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Data Tables</h1>
+
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">ListBlocs</h5>
+                            <button class="btn btn-secondary mr-3" (click)="trierBlocs()"><i class="fa fa-sort"></i>
+                                Trier
+                                par
+                                nom</button>
+                            <button class="btn btn-secondary" (click)="printBlocs()"><i class="fa fa-print"></i>
+                                Imprimer</button>
+                            <input type="text" class="form-control w-25 mt-3" [(ngModel)]="rechercheblocs"
+                                (input)="rechercheBlocs()" placeholder="Rechercher un bloc">
+                            <table class="table datatable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">id</th>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Capacite</th>
+                                        <th scope="col">Foyer</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let bloc of listBlocs">
+
+                                        <th scope="row">{{bloc?.idBloc}}</th>
+                                        <td>{{bloc?.nomBloc}}</td>
+                                        <td>{{bloc?.capaciteBloc}}</td>
+                                        <td>{{bloc?.Foyer?.idFoyer  }}</td>
+                                        <td>
+                                            <a href="Bloc/ModifierBloc/{{bloc.idBloc}}" type="submit"
+                                                class="btn btn-success ">Modifier</a>
+                                            <button type="submit" class="btn btn-danger m-1"
+                                                (click)="onDeleteBloc(bloc)">Supprimer</button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <!-- End Table with stripped rows -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+    <app-footer></app-footer>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+
+
+</body>
+
+</html>

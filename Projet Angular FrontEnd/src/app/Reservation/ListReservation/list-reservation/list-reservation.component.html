@@ -1,0 +1,49 @@
+<app-header></app-header>
+<app-menu></app-menu>
+
+<main id="main" class="main">
+  <section class="section">
+    <div class="container">
+
+      <div class="card">
+        <div class="card-body">
+          
+          <div class="d-flex justify-content-between align-items-center">
+              <h5 class="card-title">Liste des Reservations</h5>
+              <button [routerLink]="'createReservation'" class="blue-button">Ajouter Réservation</button>
+            </div>
+
+          <!-- Tableau avec les données des réservations -->
+          <table class="table table-striped mt-4">
+            <thead>
+              <tr>
+                <th>Id reservation</th>
+                <th>Année Universitaire</th>
+                <th>estValide</th>
+                <th>Etudiants</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let reservation of reservations">
+                <td>{{ reservation?.idReservation }}</td>
+                <td>{{ reservation?.anneeUniversitaire }}</td>
+                <td>{{ reservation?.estValide ? 'Oui' : 'Non' }}</td>
+                <td>
+                  <ul>
+                    <li *ngFor="let etudiant of reservation?.etudiants">{{ etudiant?.nomEt }}</li>
+                  </ul>
+                </td>
+                <td>                  <button type="submit" class="btn btn-danger" (click)="onDeleteBloc(reservation)">Supprimer</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<app-footer></app-footer>

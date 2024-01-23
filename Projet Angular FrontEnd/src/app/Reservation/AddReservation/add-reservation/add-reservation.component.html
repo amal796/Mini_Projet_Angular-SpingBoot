@@ -1,0 +1,46 @@
+<app-header></app-header>
+<app-menu></app-menu>
+
+<main id="main" class="main">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Ajouter Reservation</h5>
+
+      <!-- Multi Columns Form -->
+      <form class="row g-3" (ngSubmit)="addNewReservation()" [formGroup]="BlocForm">
+        <div class="col-md-12">
+          <label for="inputName5" class="form-label">L'année Universitaire :</label>
+          <input type="date" class="form-control" formControlName="anneeUniversitaire">
+          <div *ngIf="validateField('anneeUniversitaire')" class="error-message">
+            {{ getErrorMessage('anneeUniversitaire') }}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="inputAddress5" class="form-label">estValide :</label>
+          <input type="text" class="form-control" formControlName="estValide">
+          <div *ngIf="validateField('estValide')" class="error-message">
+            {{ getErrorMessage('estValide') }}
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label for="inputFoyer" class="form-label">Etudiant :</label>
+          <select id="inputFoyer" class="form-select" formControlName="etudiant">
+            <option value="" selected disabled>Choisissez un etudiant</option>
+            <option *ngFor="let etudiant of etudiants" [value]="etudiant.idEtudiant">{{ etudiant.nomEt }}</option>
+          </select>
+          <div *ngIf="validateField('etudiant')" class="error-message">
+            {{ getErrorMessage('etudiant') }}
+          </div>
+        </div>
+                
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Ajouter</button>
+          <button type="reset" class="btn btn-secondary">Reset</button>
+        </div>
+      </form><!-- End Multi Columns Form -->
+
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>
